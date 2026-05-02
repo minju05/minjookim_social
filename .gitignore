@@ -6,4 +6,6 @@ data/
 outputs/
 muma-tom
 *.jsonl
-*.json
+# 최종 summary/predictions 파일들은 추적
+!outputs/muma_gpt4o_mini_summary.json
+!outputs/muma_gpt4o_mini_predictions.json
