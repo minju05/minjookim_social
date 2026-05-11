@@ -55,23 +55,35 @@ def main() -> None:
     selected_ids = selected_ids[args.offset : (args.offset + args.limit) if args.limit is not None else None]
 
     uploaded_by_episode: dict[str, object] = {}
-    output_data: dict[str, dict[str, str]] = {}
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
+    output_data: dict[str, dict[str, str]] = {}
+    if args.output.exists():
+        output_data = load_json(args.output)
+        print(f"Resuming: {len(output_data)} episodes already done, skipping.")
+
     for episode_id in tqdm(selected_ids, desc="Extract actions"):
-        video_path = dataset_dir / "videos" / f"video_{episode_id}.mp4"
-        if not video_path.exists():
+        if episode_id in output_data:
             continue
 
-        uploaded = uploaded_by_episode.get(episode_id)
-        if uploaded is None:
-            uploaded = upload_video_and_wait(client, video_path)
-            uploaded_by_episode[episode_id] = uploaded
+        video_path = dataset_dir / "videos" / f"video_{episode_id}.mp4"
+        if not video_path.exists():
+            tqdm.write(f"[skip] video not found: {video_path}")
+            continue
 
-        prompt = prompt_data[episode_id]["prompt"]
-        action_text = extract_action_text(client, settings, uploaded, prompt, fps=args.fps)
-        output_data[episode_id] = {"prompt": prompt, "action": action_text}
-        args.output.write_text(json.dumps(output_data, ensure_ascii=False, indent=2), encoding="utf-8")
+        try:
+            uploaded = uploaded_by_episode.get(episode_id)
+            if uploaded is None:
+                uploaded = upload_video_and_wait(client, video_path)
+                uploaded_by_episode[episode_id] = uploaded
+
+            prompt = prompt_data[episode_id]["prompt"]
+            action_text = extract_action_text(client, settings, uploaded, prompt, fps=args.fps)
+            output_data[episode_id] = {"prompt": prompt, "action": action_text}
+            args.output.write_text(json.dumps(output_data, ensure_ascii=False, indent=2), encoding="utf-8")
+        except Exception as e:
+            tqdm.write(f"[skip] episode {episode_id} failed: {e}")
+
     print(json.dumps({"episodes": len(output_data), "output": str(args.output)}, indent=2))
 
 

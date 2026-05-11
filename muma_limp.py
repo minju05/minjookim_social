@@ -41,7 +41,7 @@ def extract_name_from_question(client: OpenAI, question: str) -> list[str]:
     """
     response = client.chat.completions.create(
         messages=[{"role": "system", "content": prompt.format(question)}],
-        model="gpt-4o",
+        model="gpt-4o-mini",
         temperature=0.0,
     )
     return ast.literal_eval(response.choices[0].message.content.strip())
@@ -57,7 +57,7 @@ def get_choice(client: OpenAI, final_prob: list[float], prompt: str) -> str:
         final_answer += f"Probability of statement in choice {choice_list[index]} is True: {prob}\n"
     response = client.chat.completions.create(
         messages=[{"role": "system", "content": final_answer}],
-        model="gpt-4o",
+        model="gpt-4o-mini",
         temperature=0.0,
     )
     return response.choices[0].message.content.strip()[0]
@@ -80,7 +80,7 @@ def parse_text_info(client: OpenAI, text: str, name: str) -> dict[str, list[str]
     """
     response = client.chat.completions.create(
         messages=[{"role": "system", "content": prompt.format(text, name)}],
-        model="gpt-4o",
+        model="gpt-4o-mini",
         temperature=0.0,
     )
     info = response.choices[0].message.content.strip()
@@ -117,7 +117,7 @@ def latent_variable_extraction(client: OpenAI, info: dict[str, dict[str, list[st
 
     init_response = client.chat.completions.create(
         messages=[{"role": "system", "content": init_state_prompt.format(action_str)}],
-        model="gpt-4o",
+        model="gpt-4o-mini",
         temperature=0.0,
     )
     init_state = init_response.choices[0].message.content.strip()
@@ -130,7 +130,7 @@ def latent_variable_extraction(client: OpenAI, info: dict[str, dict[str, list[st
         """ + latent_variable_prompt
         response = client.chat.completions.create(
             messages=[{"role": "system", "content": prompt.format(question)}],
-            model="gpt-4o",
+            model="gpt-4o-mini",
             temperature=0.0,
         )
     else:
@@ -139,7 +139,7 @@ def latent_variable_extraction(client: OpenAI, info: dict[str, dict[str, list[st
         """
         response = client.chat.completions.create(
             messages=[{"role": "system", "content": prompt.format(question, init_state)}],
-            model="gpt-4o",
+            model="gpt-4o-mini",
             temperature=0.0,
         )
     latent_variables = response.choices[0].message.content.strip()
@@ -196,7 +196,7 @@ def compute_prob_utterance(
 """
     response = client.chat.completions.create(
         messages=[{"role": "system", "content": evaluation_prompt}],
-        model="gpt-4o",
+        model="gpt-4o-mini",
         logprobs=True,
         top_logprobs=5,
         temperature=0.0,
@@ -237,7 +237,7 @@ def compute_prob_action(
 """
     response = client.chat.completions.create(
         messages=[{"role": "system", "content": evaluation_prompt}],
-        model="gpt-4o",
+        model="gpt-4o-mini",
         logprobs=True,
         top_logprobs=5,
         temperature=0.0,
@@ -312,7 +312,7 @@ def postprocess_visual_actions(client: OpenAI, raw_action_text: str, episode_id:
 """
         response = client.chat.completions.create(
             messages=[{"role": "system", "content": prompt}],
-            model="gpt-4o",
+            model="gpt-4o-mini",
             temperature=0.0,
         )
         inferred_object_context = response.choices[0].message.content.strip()
@@ -322,7 +322,7 @@ def postprocess_visual_actions(client: OpenAI, raw_action_text: str, episode_id:
 """
         response = client.chat.completions.create(
             messages=[{"role": "system", "content": prompt}],
-            model="gpt-4o",
+            model="gpt-4o-mini",
             temperature=0.0,
         )
         inferred_name = response.choices[0].message.content.strip()
@@ -340,7 +340,7 @@ def postprocess_visual_actions(client: OpenAI, raw_action_text: str, episode_id:
     """
     response = client.chat.completions.create(
         messages=[{"role": "system", "content": prompt.format(raw_action_text, inferred_object_context, inferred_name)}],
-        model="gpt-4o",
+        model="gpt-4o-mini",
         temperature=0.0,
     )
     actions = response.choices[0].message.content.strip()

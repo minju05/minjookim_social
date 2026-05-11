@@ -24,6 +24,9 @@ class Settings:
     gemini_model: str
     frame_stride: int
     max_frames: int | None
+    use_vertex_ai: bool
+    gcp_project: str | None
+    gcp_location: str
 
 
 def load_settings() -> Settings:
@@ -48,4 +51,7 @@ def load_settings() -> Settings:
         gemini_model=os.getenv("GEMINI_MODEL", "gemini-2.5-pro"),
         frame_stride=int(os.getenv("FRAME_STRIDE", "20")),
         max_frames=max_frames,
+        use_vertex_ai=os.getenv("USE_VERTEX_AI", "false").lower() == "true",
+        gcp_project=os.getenv("GCP_PROJECT"),
+        gcp_location=os.getenv("GCP_LOCATION", "us-central1"),
     )

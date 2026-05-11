@@ -36,6 +36,11 @@ def build_arg_parser() -> argparse.ArgumentParser:
         default=None,
         help="Override max frames per question. Leave unset to use the configured default, or pass 0 for no cap.",
     )
+    parser.add_argument(
+        "--text-only",
+        action="store_true",
+        help="Skip video frames; use text context only (teahun0502 baseline).",
+    )
     return parser
 
 
@@ -79,11 +84,14 @@ def main() -> None:
     predictions = []
     with args.output.open("w", encoding="utf-8") as f:
         for record in tqdm(selected, desc="MuMA-ToM GPT-4o"):
-            frames = sample_video_frames(
-                record.video_path,
-                frame_stride=frame_stride,
-                max_frames=max_frames,
-            )
+            if args.text_only:
+                frames = []
+            else:
+                frames = sample_video_frames(
+                    record.video_path,
+                    frame_stride=frame_stride,
+                    max_frames=max_frames,
+                )
             prediction = predict_question(client, settings, record, frames)
             predictions.append(prediction)
             f.write(json.dumps(prediction_to_dict(prediction), ensure_ascii=False) + "\n")
