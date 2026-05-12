@@ -122,6 +122,19 @@ def _payload_text_only(record: QuestionRecord) -> str:
     return "\n".join(lines)
 
 
+def _payload_video_only(record: QuestionRecord) -> str:
+    """Video-only: 프레임만 (GT 텍스트 없음)"""
+    lines = [
+        f"Question type: {record.question_type}",
+        f"Question: {record.question}",
+        f"A) {record.choices[0]}",
+        f"B) {record.choices[1]}",
+        f"C) {record.choices[2]}",
+        'Pick the single best answer. Respond in JSON: {"choice_letter": "A", "reasoning": "..."}',
+    ]
+    return "\n".join(lines)
+
+
 def _payload_v5_few_shot_cot(record: QuestionRecord, examples: list[dict]) -> str:
     """v5: Few-Shot + Chain-of-Thought (v4 기반 + CoT 허용)"""
     # Few-shot 예제 포맷팅
@@ -442,6 +455,20 @@ PROMPT_CONFIGS = {
         include_question_type=True,
         json_output=True,
         payload_fn=_payload_text_only,
+        response_parser_fn=_parse_json_response,
+    ),
+    "video_only": PromptConfig(
+        name="video_only",
+        description="Video-Only (프레임만, text context 없음)",
+        accuracy="TBD",
+        system_prompt=(
+            "You are an expert in theory of mind and social reasoning. "
+            "Answer the following multiple-choice question about a video clip. "
+            "Respond in JSON with keys: choice_letter (A/B/C) and reasoning."
+        ),
+        include_question_type=True,
+        json_output=True,
+        payload_fn=_payload_video_only,
         response_parser_fn=_parse_json_response,
     ),
 }
