@@ -1,0 +1,602 @@
+[
+  {
+    "question_id": "5127_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4106_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4365_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4419_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "5014_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4005_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "5138_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "5154_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4164_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4499_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4081_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "5165_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "5379_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4162_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4059_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4200_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4482_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4047_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4063_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4041_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "5126_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4560_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4083_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4449_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4441_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4037_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4490_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "5302_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4280_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "5095_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4621_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4041_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4190_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "5098_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4452_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4473_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4284_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4510_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4043_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4198_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4331_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "5126_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "5121_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4124_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4559_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4160_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4329_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4423_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "5010_2",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "4173_1",
+    "question_type": "belief"
+  },
+  {
+    "question_id": "2070_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "548_2",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "144_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "630_2",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "3129_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "404_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "193_3",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "913_2",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "578_2",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "1817_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "263_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "3074_3",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "2053_4",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "801_4",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "2559_3",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "640_4",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "682_3",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "2462_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "630_3",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "3098_2",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "1811_4",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "640_2",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "3074_4",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "640_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "135_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "1817_4",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "3092_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "3074_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "3092_4",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "3130_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "1856_3",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "905_2",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "128_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "1131_4",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "1758_4",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "578_3",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "801_2",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "193_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "905_3",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "3130_2",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "154_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "389_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "152_2",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "152_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "161_2",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "1811_2",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "528_4",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "1856_2",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "601_1",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "1758_2",
+    "question_type": "belief_of_goal"
+  },
+  {
+    "question_id": "4017_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4150_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "5163_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4133_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4452_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4343_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4419_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4506_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4656_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4540_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4331_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4658_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "5105_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4369_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "5302_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4490_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4176_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4439_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4103_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4560_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4370_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4506_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4102_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "5127_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4490_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "5095_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4584_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "5099_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "5121_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4332_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "5017_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4540_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4083_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4369_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4623_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4551_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4178_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4117_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4101_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "5039_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4200_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4512_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4370_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4525_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4198_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "5042_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4499_3",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4367_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4526_4",
+    "question_type": "social_goal"
+  },
+  {
+    "question_id": "4429_4",
+    "question_type": "social_goal"
+  }
+]

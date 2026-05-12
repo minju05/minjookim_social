@@ -36,6 +36,17 @@ def build_arg_parser() -> argparse.ArgumentParser:
         default=None,
         help="Override max frames per question. Leave unset to use the configured default, or pass 0 for no cap.",
     )
+    parser.add_argument(
+        "--prompt-version",
+        type=str,
+        default="v2_ours",
+        help="Prompt version key (e.g. v2_ours, text_only).",
+    )
+    parser.add_argument(
+        "--no-frames",
+        action="store_true",
+        help="Skip frame sampling and send text only.",
+    )
     return parser
 
 
@@ -79,12 +90,15 @@ def main() -> None:
     predictions = []
     with args.output.open("w", encoding="utf-8") as f:
         for record in tqdm(selected, desc="MuMA-ToM GPT-4o"):
-            frames = sample_video_frames(
-                record.video_path,
-                frame_stride=frame_stride,
-                max_frames=max_frames,
-            )
-            prediction = predict_question(client, settings, record, frames)
+            if args.no_frames:
+                frames = []
+            else:
+                frames = sample_video_frames(
+                    record.video_path,
+                    frame_stride=frame_stride,
+                    max_frames=max_frames,
+                )
+            prediction = predict_question(client, settings, record, frames, prompt_version=args.prompt_version)
             predictions.append(prediction)
             f.write(json.dumps(prediction_to_dict(prediction), ensure_ascii=False) + "\n")
             f.flush()

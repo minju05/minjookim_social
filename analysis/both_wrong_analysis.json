@@ -1,0 +1,67 @@
+{
+  "total_both_wrong": 209,
+  "same_wrong": 171,
+  "different_wrong": 38,
+  "by_type": {
+    "belief": {
+      "count": 24,
+      "same": 10
+    },
+    "social_goal": {
+      "count": 64,
+      "same": 58
+    },
+    "belief_of_goal": {
+      "count": 121,
+      "same": 103
+    }
+  },
+  "by_q": {
+    "Q2": {
+      "count": 50,
+      "same": 33
+    },
+    "Q3": {
+      "count": 77,
+      "same": 65
+    },
+    "Q4": {
+      "count": 70,
+      "same": 62
+    },
+    "Q1": {
+      "count": 12,
+      "same": 11
+    }
+  },
+  "by_type_q": {
+    "belief_Q2": {
+      "count": 24,
+      "same": 10
+    },
+    "social_goal_Q3": {
+      "count": 32,
+      "same": 27
+    },
+    "social_goal_Q4": {
+      "count": 32,
+      "same": 31
+    },
+    "belief_of_goal_Q3": {
+      "count": 45,
+      "same": 38
+    },
+    "belief_of_goal_Q4": {
+      "count": 38,
+      "same": 31
+    },
+    "belief_of_goal_Q2": {
+      "count": 26,
+      "same": 23
+    },
+    "belief_of_goal_Q1": {
+      "count": 12,
+      "same": 11
+    }
+  }
+}
