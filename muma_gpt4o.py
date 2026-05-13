@@ -314,6 +314,196 @@ def _parse_json_response(text: str) -> str:
     return resp_json["choice_letter"].strip().upper()
 
 
+def _parse_json_choice_only(text: str) -> str:
+    """choice_only_json 파서: choice_letter만 추출, 여분 키 무시, fallback 지원"""
+    text = text.strip()
+    # JSON 파싱 시도
+    m = re.search(r'\{.*?\}', text, re.DOTALL)
+    if m:
+        try:
+            d = json.loads(m.group())
+            letter = d.get("choice_letter", "").strip().upper()
+            if letter in ("A", "B", "C"):
+                return letter
+        except Exception:
+            pass
+    # fallback: A/B/C 추출
+    m2 = LETTER_RE.search(text)
+    if m2:
+        return m2.group(1).upper()
+    return ""
+
+
+def _payload_question_logic_rerank(record: QuestionRecord) -> str:
+    """Question-logic-aware 6-step reranking payload (baseline 없이 새로 풀기)"""
+    lines = [
+        f"Question type: {record.question_type}",
+        "",
+        f"Text context: {record.text_context or 'N/A'}",
+        "",
+        f"Question: {record.question}",
+        "",
+        f"A) {record.choices[0]}",
+        f"B) {record.choices[1]}",
+        f"C) {record.choices[2]}",
+        "",
+        "Solve the question by explicitly analyzing its logic.",
+        "",
+        "Step 1. Identify whether the question asks for MOST likely or LEAST likely.",
+        "",
+        "Step 2. Identify the explicit condition in the question.",
+        "Examples:",
+        "- whether a character is trying to help another character",
+        "- whether a character is trying to hinder another character",
+        "- whether a character knows what is inside a location",
+        "- whether the answer should be inferred based on the agents' actions",
+        "",
+        "Step 3. Identify the target character whose mental state is being evaluated.",
+        "",
+        "Step 4. Identify the key mental-state inference needed.",
+        "Useful rules:",
+        "- If a character knowingly gives false location information, this may indicate hindering rather than helping.",
+        "- If a character gives true and useful location information, this may indicate helping rather than hindering.",
+        "- If an agent placed an object somewhere and another agent moves it away, infer whether the mover believes the original location was the first agent's desired location.",
+        "- For belief-of-goal questions, distinguish the other agent's actual goal from what the target character believes about that goal.",
+        "- For LEAST likely questions, choose the option least consistent with the condition and inferred mental state.",
+        "- For MOST likely questions, choose the option most consistent with the condition and inferred mental state.",
+        "",
+        "Step 5. Evaluate each option independently:",
+        "- A: Is this consistent with the question condition and the target character's mental state?",
+        "- B: Is this consistent with the question condition and the target character's mental state?",
+        "- C: Is this consistent with the question condition and the target character's mental state?",
+        "",
+        "Step 6. Choose the final answer according to the MOST/LEAST polarity.",
+        "",
+        "Respond in JSON:",
+        "{",
+        '  "question_polarity": "MOST likely or LEAST likely",',
+        '  "condition": "...",',
+        '  "target_character": "...",',
+        '  "key_inference": "...",',
+        '  "option_analysis": {',
+        '    "A": "...",',
+        '    "B": "...",',
+        '    "C": "..."',
+        '  },',
+        '  "choice_letter": "A",',
+        '  "reasoning": "..."',
+        "}",
+    ]
+    return "\n".join(lines)
+
+
+def _parse_question_logic_rerank_response(text: str) -> str:
+    """question_logic_rerank 응답 파서: choice_letter 추출, fallback 지원"""
+    text = text.strip()
+    # 1. 직접 JSON 파싱
+    try:
+        data = json.loads(text)
+        choice = data.get("choice_letter", "")
+        if isinstance(choice, str):
+            choice = choice.strip().upper()
+            if choice in {"A", "B", "C"}:
+                return choice
+    except Exception:
+        pass
+    # 2. JSON 블록 추출 후 파싱
+    m = re.search(r"\{.*\}", text, flags=re.DOTALL)
+    if m:
+        try:
+            data = json.loads(m.group(0))
+            choice = data.get("choice_letter", "")
+            if isinstance(choice, str):
+                choice = choice.strip().upper()
+                if choice in {"A", "B", "C"}:
+                    return choice
+        except Exception:
+            pass
+    # 3. fallback: A/B/C 단독 등장
+    m2 = LETTER_RE.search(text)
+    if m2:
+        return m2.group(1).upper()
+    return ""
+
+
+def _payload_qlogic_v2_targeted(record: QuestionRecord) -> str:
+    """qlogic_v2_targeted: qlogic with targeted fixes for belief LEAST-likely and social-goal errors."""
+    lines = [
+        f"Question type: {record.question_type}",
+        "",
+        f"Text context: {record.text_context or 'N/A'}",
+        "",
+        f"Question: {record.question}",
+        "",
+        f"A) {record.choices[0]}",
+        f"B) {record.choices[1]}",
+        f"C) {record.choices[2]}",
+        "",
+        "Solve the question by explicitly analyzing its logic.",
+        "",
+        "Step 1. Identify whether the question asks for MOST likely or LEAST likely.",
+        "",
+        "Step 2. Identify the explicit condition in the question.",
+        "Examples of conditions include:",
+        "- whether a character is trying to help another character",
+        "- whether a character is trying to hinder another character",
+        "- whether a character knows what is inside a location",
+        "- whether the answer should be inferred based on the agents' actions",
+        "",
+        "Step 3. Identify the target character whose belief, belief about another character's goal, or social goal is being evaluated.",
+        "",
+        "Step 4. Identify the key inference needed.",
+        "Useful inference rules:",
+        "- If a character knowingly gives false location information, this may indicate hindering rather than helping.",
+        "- If a character gives true and useful location information, this may indicate helping rather than hindering.",
+        "- If an agent placed an object somewhere and another agent moves it away, infer whether the mover believes the original location was the first agent's desired location.",
+        "- For belief-of-goal questions, distinguish the other agent's actual goal from what the target character believes about that goal.",
+        "- For LEAST likely questions, choose the option least consistent with the condition and inferred mental state.",
+        "- For MOST likely questions, choose the option most consistent with the condition and inferred mental state.",
+        "",
+        "Additional targeted checks:",
+        "- For belief questions with a LEAST likely polarity and a hindering condition, focus on the belief about the target object mentioned in the question, not on irrelevant objects. If the speaker gave a location for the target object and that location later appears false, then it is least likely that the speaker truly believed the target object was at the stated location.",
+        "- For social-goal questions involving information about a target object's location, do not assume that giving information means helping. First compare the stated location with the observed outcome. If the speaker is assumed to know the relevant location and the target object is not found at the stated location, treat the statement as potentially misleading. Then decide whether the social goal is helping, obstructing, or indifference.",
+        "",
+        "Step 5. Evaluate each option independently:",
+        "- A: Is this consistent with the question condition and the target character's mental state?",
+        "- B: Is this consistent with the question condition and the target character's mental state?",
+        "- C: Is this consistent with the question condition and the target character's mental state?",
+        "",
+        "Step 6. Choose the final answer according to the MOST/LEAST polarity.",
+        "",
+        "Respond in JSON:",
+        "{",
+        '  "question_polarity": "MOST likely or LEAST likely",',
+        '  "condition": "...",',
+        '  "target_character": "...",',
+        '  "key_inference": "...",',
+        '  "option_analysis": {',
+        '    "A": "...",',
+        '    "B": "...",',
+        '    "C": "..."',
+        "  },",
+        '  "choice_letter": "A",',
+        '  "reasoning": "..."',
+        "}",
+    ]
+    return "\n".join(lines)
+
+
+def _payload_choice_only_json(record: QuestionRecord) -> str:
+    """Choice-only JSON: text_only와 동일하되 reasoning 제거"""
+    lines = [
+        f"Question type: {record.question_type}",
+        f"Text context: {record.text_context or 'N/A'}",
+        f"Question: {record.question}",
+        f"A) {record.choices[0]}",
+        f"B) {record.choices[1]}",
+        f"C) {record.choices[2]}",
+        'Pick the single best answer. Respond in JSON: {"choice_letter": "A"}',
+    ]
+    return "\n".join(lines)
+
+
 PROMPT_CONFIGS = {
     "v1_minju": PromptConfig(
         name="v1_minju",
@@ -471,6 +661,57 @@ PROMPT_CONFIGS = {
         payload_fn=_payload_video_only,
         response_parser_fn=_parse_json_response,
     ),
+    "choice_only_json": PromptConfig(
+        name="choice_only_json",
+        description="Choice-Only JSON (reasoning 제거, 변수 통제 실험)",
+        accuracy="TBD",
+        system_prompt=(
+            "You are an expert in theory of mind and social reasoning. "
+            "Answer the following multiple-choice question based on the text context. "
+            "Respond in JSON with only the key choice_letter. Do not include reasoning."
+        ),
+        include_question_type=True,
+        json_output=True,
+        payload_fn=_payload_choice_only_json,
+        response_parser_fn=_parse_json_choice_only,
+    ),
+    "question_logic_rerank_without_initial": PromptConfig(
+        name="question_logic_rerank_without_initial",
+        description="Question-logic-aware 6-step reranking (baseline 없이 새로 풀기)",
+        accuracy="TBD",
+        system_prompt=(
+            "You are an expert in theory of mind and social reasoning. "
+            "Your task is to answer a multiple-choice Theory-of-Mind question by explicitly analyzing the question logic. "
+            "Do not answer immediately. "
+            "First identify the question polarity, the explicit condition, the target character, "
+            "and the key mental-state inference. "
+            "Then evaluate each option independently and choose the best answer. "
+            "Respond in JSON with keys: question_polarity, condition, target_character, "
+            "key_inference, option_analysis, choice_letter, reasoning."
+        ),
+        include_question_type=True,
+        json_output=True,
+        payload_fn=_payload_question_logic_rerank,
+        response_parser_fn=_parse_question_logic_rerank_response,
+    ),
+    "qlogic_v2_targeted": PromptConfig(
+        name="qlogic_v2_targeted",
+        description="QLogic with targeted checks for belief least-likely and social-goal truthfulness errors",
+        accuracy="TBD",
+        system_prompt=(
+            "You are an expert in theory of mind and social reasoning. "
+            "Your task is to answer a multiple-choice Theory-of-Mind question by explicitly analyzing the question logic. "
+            "Do not answer immediately. "
+            "First identify the question polarity, the explicit condition, the target character, "
+            "and the key mental-state inference. "
+            "Then evaluate each option independently and choose the best answer. "
+            "Respond in JSON with keys: question_polarity, condition, target_character, key_inference, option_analysis, choice_letter, reasoning."
+        ),
+        include_question_type=True,
+        json_output=True,
+        payload_fn=_payload_qlogic_v2_targeted,
+        response_parser_fn=_parse_question_logic_rerank_response,
+    ),
 }
 
 
@@ -484,6 +725,13 @@ class Prediction:
     predicted_letter: str
     correct: bool
     reasoning: str
+    # structured fields (populated when model returns JSON with these keys)
+    question_polarity: str = ""
+    condition: str = ""
+    target_character: str = ""
+    key_inference: str = ""
+    option_analysis: dict = None
+    raw_response: str = ""
 
 
 def predict_question(
@@ -544,6 +792,24 @@ def predict_question(
     index = ord(letter) - ord("A")
     predicted_answer = record.choices[index]
 
+    # 6. structured fields 추출 (JSON 응답인 경우)
+    question_polarity = ""
+    condition = ""
+    target_character = ""
+    key_inference = ""
+    option_analysis = None
+    reasoning_text = ""
+    try:
+        parsed = json.loads(text)
+        question_polarity = parsed.get("question_polarity", "")
+        condition = parsed.get("condition", "")
+        target_character = parsed.get("target_character", "")
+        key_inference = parsed.get("key_inference", "")
+        option_analysis = parsed.get("option_analysis", None)
+        reasoning_text = parsed.get("reasoning", "")
+    except Exception:
+        reasoning_text = text
+
     return Prediction(
         question_id=record.question_id,
         episode_id=record.episode_id,
@@ -552,7 +818,13 @@ def predict_question(
         predicted_answer=predicted_answer,
         predicted_letter=letter,
         correct=predicted_answer == record.answer,
-        reasoning=text[:500],
+        reasoning=reasoning_text,
+        question_polarity=question_polarity,
+        condition=condition,
+        target_character=target_character,
+        key_inference=key_inference,
+        option_analysis=option_analysis,
+        raw_response=text,
     )
 
 

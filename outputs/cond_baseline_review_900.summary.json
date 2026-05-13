@@ -1,0 +1,22 @@
+{
+  "num_questions": 900,
+  "initial_accuracy": 0.7578,
+  "final_accuracy": 0.7567,
+  "changed_count": 1,
+  "change_breakdown": {
+    "correct_to_correct": 681,
+    "correct_to_wrong": 1,
+    "wrong_to_correct": 0,
+    "wrong_to_wrong": 218
+  },
+  "initial_accuracy_by_type": {
+    "belief": 0.9167,
+    "belief_of_goal": 0.62,
+    "social_goal": 0.7367
+  },
+  "final_accuracy_by_type": {
+    "belief": 0.9167,
+    "belief_of_goal": 0.62,
+    "social_goal": 0.7333
+  }
+}

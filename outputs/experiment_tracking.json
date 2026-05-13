@@ -1,0 +1,128 @@
+{
+  "model": "gpt-4o",
+  "dataset": "MUMA-ToM (900 questions: belief/belief_of_goal/social_goal × 300)",
+  "experiments": [
+    {
+      "name": "qa_only",
+      "description": "Q+A만 (context 없음), no-frames",
+      "output_file": "outputs/gpt4o_qaonly_900.jsonl",
+      "num_questions": 900,
+      "overall_accuracy": 0.442,
+      "accuracy_by_type": {
+        "belief": 0.44,
+        "belief_of_goal": 0.37,
+        "social_goal": 0.517
+      },
+      "notes": "컨텍스트 없이 순수 선택지만 제공 → 낮은 정확도"
+    },
+    {
+      "name": "video_only",
+      "description": "프레임만 (text context 없음)",
+      "output_file": "outputs/gpt4o_videoonly_900.jsonl",
+      "num_questions": 900,
+      "overall_accuracy": 0.596,
+      "accuracy_by_type": {
+        "belief": 0.86,
+        "belief_of_goal": 0.463,
+        "social_goal": 0.463
+      },
+      "notes": "영상만으로는 belief_of_goal/social_goal 성능 낮음"
+    },
+    {
+      "name": "text_only (baseline)",
+      "description": "Text context만 사용, no-frames, JSON 응답 (choice_letter + reasoning)",
+      "output_file": "outputs/gpt4o_textonly_900.jsonl",
+      "num_questions": 900,
+      "overall_accuracy": 0.758,
+      "accuracy_by_type": {
+        "belief": 0.917,
+        "belief_of_goal": 0.62,
+        "social_goal": 0.737
+      },
+      "notes": "기준선 (baseline). cond1_textonly_900.jsonl과 동일 결과"
+    },
+    {
+      "name": "choice_only_json",
+      "description": "Text context 제공하되 reasoning 제거, choice_letter만 응답",
+      "output_file": "outputs/cond1_choiceonly_900.jsonl",
+      "num_questions": 900,
+      "overall_accuracy": 0.721,
+      "accuracy_by_type": {
+        "belief": 0.857,
+        "belief_of_goal": 0.65,
+        "social_goal": 0.657
+      },
+      "notes": "reasoning 제거 시 -3.7%p → reasoning이 성능에 기여함 확인"
+    },
+    {
+      "name": "baseline_review_2call",
+      "description": "text_only 1차 답변 → GPT-4o 자기검토 2차 call",
+      "output_file": "outputs/cond_baseline_review_900.jsonl",
+      "num_questions": 900,
+      "overall_accuracy": 0.757,
+      "accuracy_by_type": {
+        "belief": 0.917,
+        "belief_of_goal": 0.62,
+        "social_goal": 0.733
+      },
+      "notes": "changed=1/900 (0.1%). 자기검토가 너무 보수적 → self-consistency bias",
+      "extra": {
+        "initial_accuracy": 0.758,
+        "changed_count": 1,
+        "correct_to_wrong": 1,
+        "wrong_to_correct": 0
+      }
+    },
+    {
+      "name": "question_logic_rerank_without_initial",
+      "description": "6단계 명시적 로직 분석 (polarity→condition→target→inference→option eval→final), no-frames",
+      "output_file": "outputs/qlogic_rerank_900.jsonl",
+      "num_questions": 900,
+      "overall_accuracy": 0.806,
+      "accuracy_by_type": {
+        "belief": 0.917,
+        "belief_of_goal": 0.783,
+        "social_goal": 0.717
+      },
+      "notes": "belief_of_goal +16.3%p (62→78.3%), social_goal -2.0%p (73.7→71.7%). Overall +4.8%p"
+    }
+  ],
+  "qwen_baseline": {
+    "name": "Qwen2.5-VL-7B text_only",
+    "output_file": "outputs/qwen_cond1_textonly_900.jsonl",
+    "num_questions": 900,
+    "overall_accuracy": 0.389,
+    "accuracy_by_type": {
+      "belief": 0.507,
+      "belief_of_goal": 0.207,
+      "social_goal": 0.453
+    },
+    "notes": "7B 모델 기준선"
+  },
+  "summary_table": {
+    "baseline (text_only)": {
+      "overall": 0.758,
+      "belief": 0.917,
+      "belief_of_goal": 0.62,
+      "social_goal": 0.737
+    },
+    "choice_only_json": {
+      "overall": 0.721,
+      "belief": 0.857,
+      "belief_of_goal": 0.65,
+      "social_goal": 0.657
+    },
+    "baseline_review_2call": {
+      "overall": 0.757,
+      "belief": 0.917,
+      "belief_of_goal": 0.62,
+      "social_goal": 0.733
+    },
+    "qlogic_rerank": {
+      "overall": 0.806,
+      "belief": 0.917,
+      "belief_of_goal": 0.783,
+      "social_goal": 0.717
+    }
+  }
+}

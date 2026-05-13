@@ -1,0 +1,7 @@
+{
+  "num_questions": 300,
+  "overall_accuracy": 0.9166666666666666,
+  "accuracy_by_type": {
+    "belief": 0.9166666666666666
+  }
+}

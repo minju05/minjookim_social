@@ -47,6 +47,17 @@ def build_arg_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Skip frame sampling and send text only.",
     )
+    parser.add_argument(
+        "--question-types",
+        type=str,
+        default=None,
+        help="콤마 구분 question_type 필터 (예: belief_of_goal,social_goal). 미지정 시 전체.",
+    )
+    parser.add_argument(
+        "--append",
+        action="store_true",
+        help="기존 output 파일에 이어서 쓰기 (덮어쓰기 대신 append).",
+    )
     return parser
 
 
@@ -80,6 +91,11 @@ def main() -> None:
         print(json.dumps({"dataset_dir": str(dataset_dir), "num_questions": len(questions)}, indent=2))
         return
 
+    # --question-types 필터 적용
+    if args.question_types:
+        allowed = {t.strip() for t in args.question_types.split(",")}
+        questions = [q for q in questions if q.question_type in allowed]
+
     selected = questions[args.offset : args.offset + args.limit]
     client = OpenAI(api_key=settings.openai_api_key)
     frame_stride = args.frame_stride or settings.frame_stride
@@ -88,7 +104,8 @@ def main() -> None:
     args.output.parent.mkdir(parents=True, exist_ok=True)
 
     predictions = []
-    with args.output.open("w", encoding="utf-8") as f:
+    file_mode = "a" if args.append else "w"
+    with args.output.open(file_mode, encoding="utf-8") as f:
         for record in tqdm(selected, desc="MuMA-ToM GPT-4o"):
             if args.no_frames:
                 frames = []
