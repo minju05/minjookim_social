@@ -1,0 +1,7 @@
+{
+  "num_questions": 300,
+  "overall_accuracy": 0.7033333333333334,
+  "accuracy_by_type": {
+    "social_goal": 0.7033333333333334
+  }
+}
