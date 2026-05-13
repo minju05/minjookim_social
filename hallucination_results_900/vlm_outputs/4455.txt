@@ -1,0 +1,5 @@
+John and Jessica are in a kitchen. John asks, "Do you know where the bread is?" Jessica replies, "I think I saw it in the pantry." John walks to the pantry, opens it, and says, "I found the bread." He then walks to the counter, opens a drawer, and says, "I found the bread." He closes the drawer. 
+
+Jessica walks to the counter, opens a cabinet, and says, "I found the bread." She then walks to the counter, opens a drawer, and says, "I found the bread." She closes the drawer. 
+
+They both stop talking.

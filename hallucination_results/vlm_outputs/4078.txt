@@ -1,0 +1,5 @@
+Michael and Mary were in the kitchen. Michael opened the cabinet, but didn't grab anything. He then closed the cabinet. He walked to the living room, opened the cabinet, and grabbed an unknown object. He then closed the cabinet. He walked to the kitchen, opened the cabinet, and grabbed an unknown object. He then closed the cabinet.
+
+Mary walked to the living room, opened the cabinet, and didn't grab anything. She then closed the cabinet. She walked to the kitchen, opened the cabinet, and didn't grab anything. She then closed the cabinet.
+
+Michael and Mary didn't communicate further.

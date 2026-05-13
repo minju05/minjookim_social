@@ -1,0 +1,5 @@
+John and Mary were in a kitchen. John asked, "Do you know where the spoon is?" Mary replied, "I located a spoon inside the microwave in the kitchen." John walked to the kitchen, opened the microwave, and grabbed the spoon. He then closed the microwave.
+
+Mary walked to the living room, opened a cabinet, and closed it without grabbing anything. She then walked to the kitchen, opened the microwave, and closed it without grabbing anything. She then walked to the living room, opened a cabinet, and closed it without grabbing anything.
+
+John and Mary completed their tasks without further communication.

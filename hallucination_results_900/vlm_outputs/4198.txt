@@ -1,0 +1,5 @@
+Michael and Mary were in a living room. Michael asked, "Do you know where the bread is?" Mary replied, "I found the bread inside the cabinet in the living room." Michael walked to the living room, opened the cabinet, and grabbed the bread. He then walked to the kitchen, opened the fridge, and placed the bread inside. He closed the fridge.
+
+Mary walked to the living room, opened the cabinet, and closed it without grabbing anything. She then walked to the kitchen, opened the fridge, and closed it without grabbing anything. She then walked to the living room, opened the cabinet, and closed it without grabbing anything.
+
+Michael and Mary completed their tasks without further communication.

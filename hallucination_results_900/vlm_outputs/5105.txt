@@ -1,0 +1,5 @@
+Kevin and Mary are in a living room. Kevin asks, "Do you know where the coffee table is?" Mary replies, "I found the coffee table in the living room." Kevin walks to the living room, opens the coffee table, and closes it. He then walks to the kitchen, opens the fridge, and closes it. He then opens the microwave and places an unknown object inside. He then closes the microwave.
+
+Mary walks to the kitchen, opens the fridge, and closes it. She then opens the microwave and places an unknown object inside. She then closes the microwave.
+
+Kevin and Mary completed their tasks without further communication.

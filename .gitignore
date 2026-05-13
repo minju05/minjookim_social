@@ -4,6 +4,7 @@ __pycache__/
 .cache/
 data/
 outputs/
+.venv/
 muma-tom
 *.jsonl
 # 최종 summary/predictions 파일들은 추적

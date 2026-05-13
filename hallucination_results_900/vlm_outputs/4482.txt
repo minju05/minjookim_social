@@ -1,0 +1,5 @@
+Michael and Sarah were in the kitchen. Michael asked, "Where is the bread?" Sarah replied, "I located a bread in the kitchen." Michael walked to the kitchen, opened the kitchen cabinet, and closed it. He then walked to the living room, opened the living room cabinet, and closed it. 
+
+Sarah walked to the living room, opened the living room cabinet, and closed it. She then walked to the kitchen, opened the kitchen cabinet, and closed it. 
+
+Michael and Sarah completed their tasks without further communication.

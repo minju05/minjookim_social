@@ -1,0 +1,5 @@
+John and Jessica were in the kitchen. John opened the cabinet, grabbed an unknown object, and closed the cabinet. He then walked to the living room, opened the TV, and placed the unknown object on it.
+
+Meanwhile, Jessica walked to the living room, opened the TV, and placed an unknown object on it. She then walked to the kitchen, opened the cabinet, and closed it without grabbing anything.
+
+John and Jessica completed their tasks without further communication.

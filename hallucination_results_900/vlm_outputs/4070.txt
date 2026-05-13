@@ -1,0 +1,5 @@
+Kevin and Sarah were in a kitchen. Kevin asked, "Where is the milk?" Sarah replied, "I located a milk inside the microwave in the kitchen." Kevin walked to the microwave, opened it, and closed it. He then walked to the fridge, opened it, and closed it. 
+
+Sarah walked to the living room, opened a cabinet, and closed it. She then walked to the kitchen, opened the microwave, and closed it. 
+
+Kevin and Sarah completed their tasks without further communication.

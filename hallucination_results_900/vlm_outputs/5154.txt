@@ -1,0 +1,5 @@
+Michael and Sarah are in a kitchen. Michael is standing near the counter, while Sarah is standing near the sink. Michael says, "I'm going to make a sandwich." Sarah replies, "I'll get the bread." Michael opens the bread cabinet, grabs the bread, and places it on the counter. He then opens the fridge, grabs the cheese, and places it on the counter. He opens the microwave, places the cheese inside, and closes the microwave.
+
+Sarah opens the fridge, grabs the milk, and places it on the counter. She then opens the microwave, places the milk inside, and closes it. She opens the microwave, places the milk, and closes it. She opens the microwave, places the milk, and closes it. She opens the microwave, places the milk, and closes it.
+
+Michael and Sarah completed their tasks without further communication.

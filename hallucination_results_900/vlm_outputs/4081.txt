@@ -1,0 +1,3 @@
+Michael and Sarah were in the kitchen. Michael asked, "Where is the phone?" Sarah replied, "I located a phone inside the kitchen cabinet." Michael opened the kitchen cabinet, grabbed the phone, and closed the cabinet. He then walked to the living room and asked, "Where is the remote?" Sarah replied, "I located a remote inside the kitchen cabinet." Michael opened the kitchen cabinet, grabbed the remote, and closed the cabinet. He then walked to the living room and asked, "Where is the TV?" Sarah replied, "I located a TV inside the living room." Michael opened the living room, grabbed the TV, and closed the living room.
+
+Michael and Sarah completed their tasks without further communication.

@@ -1,0 +1,5 @@
+Sarah walked into the kitchen while Michael stayed silent. Sarah then moved to the living room and asked, "Do you know where the milk is?" Michael, who had just walked into the kitchen, replied, "There was a milk inside the kitchen cabinet." Sarah walked to the kitchen, opened the cabinet, and closed it without grabbing anything. She then walked to the living room and asked, "Do you know where the milk is?" Michael, who had just walked to the living room, replied, "There was a milk inside the kitchen cabinet." Sarah walked to the kitchen, opened the cabinet, and closed it without grabbing anything.
+
+Michael walked to the living room, opened the cabinet, and closed it without grabbing anything. He then walked to the living room, opened the cabinet, and closed it without grabbing anything.
+
+Sarah and Michael did not communicate further.

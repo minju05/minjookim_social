@@ -1,0 +1,7 @@
+Michael and Sarah were in a living room. Michael sat on the couch, while Sarah stood near the coffee table. Michael asked, "Do you know where the coffee table is?" Sarah replied, "I discovered a mug on the coffee table in the bedroom."
+
+Michael walked to the bedroom, opened the door, and closed it. He then walked to the bed, opened the drawer, and closed it. He then walked to the living room, opened the coffee table, and closed it. He then walked to the kitchen, opened the fridge, and closed it.
+
+Sarah walked to the living room, opened the coffee table, and closed it. She then walked to the living room, opened the coffee table, and closed it. She then walked to the living room, opened the coffee table, and closed it.
+
+Michael and Sarah did not communicate further.

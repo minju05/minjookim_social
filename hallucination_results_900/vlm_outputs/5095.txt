@@ -1,0 +1,7 @@
+Michael walked into the kitchen while Mary stayed silent. Michael then moved to the living room and asked, "Do you have any idea where the remote control might be?" Mary, who had just walked into the kitchen, replied, "I found the remote control in the living room, but I think you are in the kitchen. I will go to the living room to find it." Michael, who had just walked into the kitchen, replied, "I found the remote control in the living room. I will go to the living room to find it." 
+
+Michael walked to the living room, opened it, and found the remote control. He then walked to the living room, opened it, and found the remote control. He grabbed the remote control and closed the living room. He then walked to the kitchen and opened it. He then opened the microwave and placed the remote control in it. He then closed the microwave.
+
+Mary walked to the kitchen, opened it, and found the milk. She then opened the fridge, and she found the milk. She then opened the microwave and placed the milk in it. She then closed the microwave.
+
+Michael and Mary completed their tasks without further communication.

@@ -1,0 +1,32 @@
+[
+  {
+    "question_id": "4190_2",
+    "condition": "C3",
+    "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)"
+  },
+  {
+    "question_id": "4556_1",
+    "condition": "C3",
+    "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)"
+  },
+  {
+    "question_id": "4510_2",
+    "condition": "C3",
+    "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)"
+  },
+  {
+    "question_id": "4485_2",
+    "condition": "C3",
+    "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)"
+  },
+  {
+    "question_id": "5154_4",
+    "condition": "C3",
+    "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)"
+  },
+  {
+    "question_id": "3074_4",
+    "condition": "C3",
+    "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)"
+  }
+]

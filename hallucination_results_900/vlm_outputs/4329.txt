@@ -1,0 +1,5 @@
+John and Jessica are in a kitchen. John is standing near the stove, while Jessica is standing near the counter. Jessica asks, "Do you know where the coffee is?" John replies, "I spotted a coffee pot on the coffee table in the living room." Jessica walks to the living room, opens the coffee table, and grabs the coffee pot. She then walks to the kitchen and places the coffee pot on the counter.
+
+Meanwhile, John walks to the fridge, opens it, and grabs a bottle of juice. He then opens the microwave and places the bottle of juice inside. He closes the microwave and the fridge.
+
+Jessica and John completed their tasks without further communication.

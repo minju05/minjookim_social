@@ -1,0 +1,5 @@
+Michael and Sarah were in a kitchen. Michael asked, "Do you know where the juice is?" Sarah replied, "I found the juice inside the microwave in the kitchen." Michael walked to the microwave, opened it, and closed it. He then walked to the living room, opened a cabinet, and closed it. He then walked to the kitchen, opened the microwave, and closed it. He then walked to the living room, opened a cabinet, and closed it.
+
+Sarah walked to the living room, opened a cabinet, and closed it. She then walked to the kitchen, opened the microwave, and closed it. She then walked to the living room, opened a cabinet, and closed it.
+
+Michael and Sarah completed their tasks without further communication.
