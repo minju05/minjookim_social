@@ -19,22 +19,16 @@ ANSWER_RE = re.compile(r'\b([A-C])\b')
 
 QA_PROMPT = """\
 Question type: {question_type}
-
-Interaction:
-{text}
-
-Question:
-{question}
+Text context: {text}
+Question: {question}
 A) {option_a}
 B) {option_b}
 C) {option_c}
-
 Pick the single best answer. Respond in JSON: {{"choice_letter": "A", "reasoning": "..."}}"""
 
 QA_SYSTEM_PROMPT = (
     "You are an expert in theory of mind and social reasoning. "
-    "You are given a description of an interaction between two agents in a household environment. "
-    "Answer the following multiple-choice question. "
+    "Answer the following multiple-choice question about a video clip. "
     "Respond in JSON with keys: choice_letter (A/B/C) and reasoning."
 )
 

@@ -6,7 +6,10 @@ import json
 from collections import Counter, defaultdict
 from pathlib import Path
 
-import requests
+import time
+
+from google import genai
+from google.genai import types
 from openai import OpenAI
 from tqdm import tqdm
 
@@ -23,10 +26,8 @@ from hallucination_data import (
 )
 from muma_config import load_settings
 from muma_data import ensure_dataset, load_questions
-from muma_video import sample_video_frames
 
-OLLAMA_URL = 'http://localhost:11434/api/chat'
-OLLAMA_MODEL = 'llama3.2-vision:11b'
+GEMINI_VLM_MODEL = 'gemini-2.5-flash'
 
 
 # ---------------------------------------------------------------------------
@@ -88,41 +89,20 @@ def _qa_vision_response(client: OpenAI, model: str, text: str, record, frames) -
 # LLaMA vision call (ollama)
 # ---------------------------------------------------------------------------
 
-def _tile_frames(frames) -> str:
-    """Tile all frames into a single grid image (llama3.2-vision supports only 1 image)."""
-    import base64
-    import io
-    from PIL import Image
-
-    cols = 5
-    images = [Image.open(io.BytesIO(base64.b64decode(f.image_b64))) for f in frames]
-    w, h = images[0].size
-    rows = (len(images) + cols - 1) // cols
-    grid = Image.new('RGB', (cols * w, rows * h))
-    for idx, img in enumerate(images):
-        r, c = divmod(idx, cols)
-        grid.paste(img, (c * w, r * h))
-    buf = io.BytesIO()
-    grid.save(buf, format='JPEG', quality=70)
-    return base64.b64encode(buf.getvalue()).decode('ascii')
-
-
-def _llama_describe(frames, name1: str, name2: str) -> str:
+def _gemini_describe(gemini_client: genai.Client, video_path, name1: str, name2: str) -> str:
+    uploaded = gemini_client.files.upload(file=video_path)
+    while uploaded.state == types.FileState.PROCESSING:
+        time.sleep(2.0)
+        uploaded = gemini_client.files.get(name=uploaded.name)
+    if uploaded.state == types.FileState.FAILED:
+        raise RuntimeError(f'Gemini file processing failed: {video_path}')
     prompt = VLM_PROMPT.format(name1=name1, name2=name2)
-    # Use at most 10 frames for tiling — keeps grid small enough for reliable inference
-    grid_b64 = _tile_frames(frames)
-    payload = {
-        'model': OLLAMA_MODEL,
-        'messages': [{'role': 'user', 'content': prompt, 'images': [grid_b64]}],
-        'stream': False,
-        'options': {'temperature': 0},
-    }
-    resp = requests.post(OLLAMA_URL, json=payload, timeout=600)
-    resp.raise_for_status()
-    data = resp.json()
-    if 'error' in data:
-        raise RuntimeError(f'ollama error: {data["error"]}')
-    return data['message']['content']
+    response = gemini_client.models.generate_content(
+        model=GEMINI_VLM_MODEL,
+        contents=[uploaded, prompt],
+        config=types.GenerateContentConfig(temperature=0.0),
+    )
+    return (response.text or '').strip()
 
 
 # ---------------------------------------------------------------------------
@@ -217,7 +197,7 @@ def run_c2(client, model, settings, pilot, episode_sg_type, out_path, err_path):
                 _log_error(err_path, record.question_id, 'C2', str(e))
 
 
-def run_c3(client, model, settings, pilot, episode_sg_type, out_path, vlm_dir, err_path):
+def run_c3(client, model, gemini_client, pilot, episode_sg_type, out_path, vlm_dir, err_path):
     done = _load_done(out_path)
     vlm_dir.mkdir(exist_ok=True)
     with out_path.open('a', encoding='utf-8') as f:
@@ -229,13 +209,8 @@ def run_c3(client, model, settings, pilot, episode_sg_type, out_path, vlm_dir, e
                 if vlm_path.exists():
                     vlm_text = vlm_path.read_text(encoding='utf-8')
                 else:
-                    frames = sample_video_frames(
-                        record.video_path,
-                        frame_stride=settings.frame_stride,
-                        max_frames=settings.max_frames,
-                    )
                     n1, n2 = extract_agent_names(record.text_context or '')
-                    vlm_text = _llama_describe(frames, n1, n2)
+                    vlm_text = _gemini_describe(gemini_client, record.video_path, n1, n2)
                     vlm_path.write_text(vlm_text, encoding='utf-8')
 
                 raw = _qa_response(client, model, vlm_text, record)
@@ -302,29 +277,6 @@ def write_csv(summaries: list[dict], out_path: Path) -> None:
 # GPU check
 # ---------------------------------------------------------------------------
 
-def check_gpu_for_c3() -> None:
-    try:
-        import subprocess
-        result = subprocess.run(
-            ['nvidia-smi', '--query-gpu=index,memory.free', '--format=csv,noheader,nounits'],
-            capture_output=True, text=True, timeout=5,
-        )
-        if result.returncode == 0:
-            print('\n[C3] GPU free memory (MiB):')
-            for line in result.stdout.strip().splitlines():
-                idx, free = line.split(',')
-                print(f'  GPU {idx.strip()}: {int(free.strip()):,} MiB free')
-        # quick connectivity test
-        resp = requests.get('http://localhost:11434/api/tags', timeout=5)
-        models = [m['name'] for m in resp.json().get('models', [])]
-        if OLLAMA_MODEL in models:
-            print(f'  ollama: {OLLAMA_MODEL} ready')
-        else:
-            print(f'  WARNING: {OLLAMA_MODEL} not in ollama ({models})')
-    except Exception as e:
-        print(f'  [GPU check failed] {e}')
-
-
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -361,6 +313,7 @@ def main() -> None:
     vlm_dir = args.output_dir / 'vlm_outputs'
 
     client = OpenAI(api_key=settings.openai_api_key)
+    gemini_client = genai.Client(api_key=settings.gemini_api_key)
     conditions = ['C1', 'C2', 'C3'] if args.condition == 'all' else [args.condition]
 
     summaries = []
@@ -371,8 +324,7 @@ def main() -> None:
         elif cond == 'C2':
             run_c2(client, args.model, settings, pilot, episode_sg_type, out, err_path)
         elif cond == 'C3':
-            check_gpu_for_c3()
-            run_c3(client, args.model, settings, pilot, episode_sg_type, out, vlm_dir, err_path)
+            run_c3(client, args.model, gemini_client, pilot, episode_sg_type, out, vlm_dir, err_path)
         s = print_summary(out)
         if s:
             summaries.append(s)
