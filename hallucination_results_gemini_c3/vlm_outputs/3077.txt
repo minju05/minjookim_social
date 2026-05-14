@@ -1,0 +1,3 @@
+Emma was in the kitchen, holding a bottle. She placed the bottle on the kitchen table. Emma then grabbed a cake from the kitchen table. She walked from the kitchen into the adjacent room. Emma walked to the coffee table and placed the cake on it. She then walked back towards the kitchen and entered it. Emma walked to the kitchen table, grabbed the bottle from it, and walked back into the adjacent room. She walked to the coffee table and placed the bottle on it.
+
+Emma completed her tasks without further communication.

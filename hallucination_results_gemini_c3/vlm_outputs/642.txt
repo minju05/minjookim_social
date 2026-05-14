@@ -1,0 +1,3 @@
+John walked into the kitchen and sat on the bench at the left table. He then stood up and walked into the bedroom. John sat on the chair at the desk and then stood up. He walked into the living room, moved to the coffee table, and grabbed the book from it. John walked to the sofa, sat on it, and placed the book on the sofa. He then stood up, walked to the bookshelf, and placed the book on the bookshelf. Finally, John walked to the sofa and sat on it.
+
+John completed his tasks without further communication.

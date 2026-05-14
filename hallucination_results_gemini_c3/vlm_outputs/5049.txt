@@ -1,0 +1,3 @@
+Michael was visible in the doorway of the kitchen. Mary then walked into the kitchen and asked, "Have you seen the book anywhere?" Michael replied, "I spotted a book on the sofa in the living room." Mary walked further into the kitchen. Meanwhile, Michael walked into the kitchen. Mary then walked from the kitchen into the living room, walked to the sofa, and grabbed the book from it. Michael walked from the kitchen into the living room and walked further into the living room while Mary held the book.
+
+Mary and Michael completed their tasks without further communication.

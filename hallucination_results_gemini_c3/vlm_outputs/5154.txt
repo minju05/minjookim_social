@@ -1,0 +1,7 @@
+Michael walked towards the kitchen counter. He then walked to the right side of the counter, opened a cabinet above it, and closed the cabinet without grabbing anything. Michael then walked to the left side of the counter, opened a cabinet above it, and closed the cabinet without grabbing anything. He walked back to the center of the kitchen counter, opened a cabinet below it, and closed the cabinet without grabbing anything. Michael then opened another cabinet below the counter and closed it without grabbing anything. He opened the oven and closed it. Michael then opened the fridge and asked, "Any idea where the wine might be?" Sarah replied, "I discovered a wine inside the kitchen cabinet." Michael closed the fridge.
+
+Sarah walked into the room from the left, holding a wine bottle and a wine glass. She walked to the table on the left and sat on the bench. Sarah then placed the wine bottle and wine glass on the table.
+
+Meanwhile, Michael walked to the right side of the kitchen counter, opened a cabinet above it, and closed the cabinet without grabbing anything. He then walked to the left side of the kitchen counter, opened a cabinet above it, and closed the cabinet without grabbing anything. Michael walked back to the center of the kitchen counter, opened a cabinet below it, and closed the cabinet without grabbing anything. He then opened another cabinet below the counter and closed it without grabbing anything. Michael opened the oven and closed it.
+
+Michael and Sarah completed their tasks without further communication.

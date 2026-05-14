@@ -1,0 +1,5 @@
+Sara walked to the fridge, opened it, grabbed an unknown object from inside, and then closed the fridge. She then walked to the table and placed the unknown object on it.
+
+Sara repeated this sequence of actions multiple times: she walked to the fridge, opened it, grabbed an unknown object, closed the fridge, walked to the table, and placed the unknown object on the table.
+
+Sara completed her tasks without further communication.

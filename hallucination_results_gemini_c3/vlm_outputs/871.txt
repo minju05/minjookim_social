@@ -1,0 +1,5 @@
+Alex walked into a bedroom. Alex then walked towards the door and exited the room.
+
+Alex walked into a kitchen/dining area. Alex walked towards the kitchen counter, then turned and walked to the refrigerator. Alex opened the refrigerator, grabbed an unknown object from it, and closed the refrigerator. Alex then walked to the kitchen counter and placed the unknown object on it. Alex walked back to the refrigerator, opened it, grabbed an unknown object from it, and closed the refrigerator.
+
+Alex completed the tasks without further communication.

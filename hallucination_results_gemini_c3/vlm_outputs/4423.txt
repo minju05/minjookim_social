@@ -1,0 +1,3 @@
+Michael walks towards the kitchen counter. Mary walks into the kitchen from the right and stops near the kitchen counter. Michael asks, "Do you know where the mug is?" Mary replies, "I found a mug on the coffee table in the bedroom." Michael then walks into the living room and stops. Michael then walks into the bedroom and stops. Michael then walks into the kitchen and stops.
+
+Michael and Mary completed their tasks without further communication.

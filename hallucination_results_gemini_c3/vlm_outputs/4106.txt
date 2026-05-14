@@ -1,0 +1,3 @@
+John walked into the kitchen while Mary walked into the kitchen. John then asked, "Do you know where the spoon is?" Mary replied, "I located a spoon inside the cabinet in the living room." John walked into the living room, then walked to the cabinet. He opened the cabinet, grabbed the spoon from inside, and closed the cabinet. John then walked into the bedroom, walked to the coffee table, and placed the spoon on the coffee table.
+
+John and Mary completed their tasks without further communication.

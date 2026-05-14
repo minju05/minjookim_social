@@ -1,0 +1,5 @@
+Mary walked to the right side of the kitchen. John walked into the kitchen. John asked, "Any idea where the potato is?" Mary replied, "I discovered a potato inside the stove in the kitchen."
+
+John walked to the stove, opened it, grabbed a potato, and closed the stove. Mary walked to the coffee maker, opened it, grabbed an unknown object, and closed the coffee maker. Mary then walked to the counter and placed the unknown object on it. John walked to the counter. Mary walked to the counter.
+
+John and Mary completed their tasks without further communication.

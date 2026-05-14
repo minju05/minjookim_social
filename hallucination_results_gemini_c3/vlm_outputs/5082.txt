@@ -1,0 +1,5 @@
+Sarah walked into the room. She then walked towards the kitchen area and stopped. Kevin walked into the room and stopped near Sarah. Sarah asked, "Do you know where the beer is?" Kevin replied, "I spotted a beer inside the kitchen cabinet."
+
+Sarah walked to the right side of the kitchen. Kevin walked to the left side of the kitchen. Sarah then walked to the fridge, opened it, grabbed a beer, and closed the fridge.
+
+Sarah and Kevin completed their tasks without further communication.

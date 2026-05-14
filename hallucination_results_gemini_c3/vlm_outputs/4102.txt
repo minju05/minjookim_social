@@ -1,0 +1,5 @@
+Mary walked towards the kitchen counter. Kevin walked into the dining area and stopped near Mary. Mary asked, "Any idea where the spoon might be?" Kevin replied, "There was a spoon inside the cabinet in the living room."
+
+Mary then walked into the living room, walked to a cabinet, opened it, grabbed a spoon, and closed the cabinet. She then walked out of the living room and into the kitchen, stopping near Kevin.
+
+Mary and Kevin completed their tasks without further communication.

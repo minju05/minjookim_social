@@ -1,0 +1,5 @@
+Jessica walked into the room. John then walked into the room. Jessica walked towards the fridge. John walked towards Jessica. Jessica asked, "Do you happen to know where the carrot is?" John replied, "I spotted a carrot inside the stove in the kitchen."
+
+John walked to the stove. Jessica walked to the fridge. John opened the stove. Jessica opened the fridge. John grabbed a carrot from the stove. Jessica closed the fridge without grabbing anything. John closed the stove. John walked to the kitchen counter. Jessica walked to the kitchen counter. John placed the carrot on the kitchen counter.
+
+Jessica and John completed their tasks without further communication.

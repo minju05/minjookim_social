@@ -1,0 +1,3 @@
+Michael stands in the kitchen. Jessica walks into the dining area, then walks past the dining table and exits the frame. Michael asks, "Have you seen my cellphone around?" Jessica replies, "I located a cellphone inside the cabinet in the living room." Michael walks from the kitchen and exits the frame. Jessica walks into the dining area, then walks towards the kitchen and exits the frame. Michael walks into the living room. He then walks to the cabinet, opens it, grabs the cellphone from the cabinet, and closes the cabinet.
+
+Jessica and Michael completed their tasks without further communication.

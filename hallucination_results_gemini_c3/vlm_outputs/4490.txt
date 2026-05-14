@@ -1,0 +1,5 @@
+Jessica walked into the kitchen, followed by John. Jessica walked to the fridge, opened it, grabbed an unknown object, and closed the fridge. John walked to a kitchen cabinet, opened it, grabbed an unknown object, and closed the cabinet. Jessica walked to a kitchen cabinet, opened it, grabbed an unknown object, and closed the cabinet. John walked to a kitchen cabinet. John asked, "Any idea where the beer might be?" Jessica replied, "I found the beer inside the kitchen cabinet." John opened the kitchen cabinet, grabbed an unknown object, and closed the cabinet. Jessica walked to a kitchen cabinet, opened it, grabbed an unknown object, and closed the cabinet. John walked to a kitchen cabinet.
+
+The scene then changed to a living room. John walked into the living room, walked to the center of the room, turned around, and walked to the sofa.
+
+John and Jessica completed their tasks without further communication.

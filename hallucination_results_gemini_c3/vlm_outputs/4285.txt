@@ -1,0 +1,11 @@
+Jessica walked into the kitchen. She walked to the red fridge, opened it, grabbed an unknown object, and closed the fridge. She then walked out of the kitchen.
+
+Meanwhile, John walked into the living room. He walked to the cabinet, opened it, and closed it without grabbing anything. Jessica then walked into the living room.
+
+Jessica asked, "Have you seen my cellphone around?" John replied, "There was a cellphone inside the cabinet in the living room."
+
+Jessica walked into the kitchen. She walked to the red fridge, opened it, grabbed the cellphone, and closed the fridge. She then walked out of the kitchen.
+
+Meanwhile, John walked into the living room. He walked to the cabinet, opened it, and closed it without grabbing anything. Jessica then walked into the living room. She walked to the cabinet, opened it, and closed it without grabbing anything.
+
+Jessica and John completed their tasks without further communication.

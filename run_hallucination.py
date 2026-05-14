@@ -45,7 +45,7 @@ def _format_qa_messages(prompt: str, content=None) -> list:
 def _qa_response(client: OpenAI, model: str, text: str, record) -> str:
     prompt = QA_PROMPT.format(
         question_type=record.question_type,
-        text=text,
+        text=text or 'N/A',
         question=record.question,
         option_a=record.choices[0],
         option_b=record.choices[1],

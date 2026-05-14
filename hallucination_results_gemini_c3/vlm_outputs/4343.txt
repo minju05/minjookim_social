@@ -1,0 +1,3 @@
+Michael walks into the dining area and then walks to the kitchen. Sarah walks into the dining area and then walks to the kitchen, stopping near Michael. Michael asks, "Any idea where the carrot is?" Sarah replies, "I located a carrot inside the kitchen cabinet." Michael walks to the kitchen cabinet, opens it, grabs a carrot, and closes the kitchen cabinet. Michael walks to the kitchen counter and places the carrot on it.
+
+Michael and Sarah completed their tasks without further communication.

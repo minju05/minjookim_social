@@ -1,0 +1,5 @@
+Michael walked into the kitchen. Jessica then walked into the kitchen. Michael walked to the kitchen counter. Jessica walked to the kitchen counter. Michael asked, "Any idea where the milk is?" Jessica replied, "I discovered a milk inside the microwave in the kitchen."
+
+Michael walked to the fridge, opened it, grabbed an unknown object, and closed the fridge. Jessica walked to the microwave, opened it, grabbed the milk, and closed the microwave. Jessica walked to the kitchen counter and placed the milk on it. Michael walked to the kitchen counter and placed the unknown object on it. Michael then walked to the microwave, opened it, placed the unknown object inside, and closed it. Jessica walked to the fridge, opened it, grabbed an unknown object, and closed the fridge. She then walked to the kitchen counter and placed the unknown object on it.
+
+Michael and Jessica completed their tasks without further communication.

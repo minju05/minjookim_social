@@ -1,0 +1,3 @@
+Mary walked into the room from the left doorway and stopped in the center. Kevin walked into the room from the left doorway and stopped in front of Mary. Kevin asked, "Any idea where the potatoes are?" Mary replied, "I discovered a potato inside the stove in the kitchen." Kevin walked to the stove, opened it, grabbed a potato, and closed the stove. Meanwhile, Mary walked to the fridge, opened it, grabbed an unknown object, and closed the fridge. Kevin walked to the table on the right and placed the potato on it. Mary walked to the table on the right and placed the unknown object on it. Both agents then walked to the left side of the room and stopped.
+
+Kevin and Mary completed their tasks without further communication.

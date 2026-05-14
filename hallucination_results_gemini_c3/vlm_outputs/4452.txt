@@ -1,0 +1,9 @@
+Mary walks into the kitchen and approaches the dining table. Michael walks into the kitchen and approaches the dining table. Michael asks, "Have you seen the toy around?" Mary replies, "I located a toy on the sofa in the living room." Mary walks out of the kitchen. Michael walks to the kitchen counter, then walks out of the kitchen.
+
+Michael walks into the living room and stands in the middle.
+
+Mary walks into the living room and then walks to the sofa.
+
+Michael walks into the bathroom while holding a colorful toy. He then walks to the sink and places the colorful toy on it.
+
+Michael and Mary completed their tasks without further communication.
