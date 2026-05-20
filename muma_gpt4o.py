@@ -556,6 +556,201 @@ def _payload_qlogic_v2_targeted_frames(record: QuestionRecord) -> str:
     return "\n".join(lines)
 
 
+def _payload_generic_cot(record: QuestionRecord) -> str:
+    """Generic CoT baseline: no ToM-specific structure, free-form step-by-step reasoning."""
+    lines = [
+        f"Question type: {record.question_type}",
+        "",
+        f"Text context: {record.text_context or 'N/A'}",
+        "",
+        f"Question: {record.question}",
+        "",
+        f"A) {record.choices[0]}",
+        f"B) {record.choices[1]}",
+        f"C) {record.choices[2]}",
+        "",
+        "Think step by step and choose the best answer.",
+        "",
+        "Respond in JSON:",
+        "{",
+        '  "choice_letter": "A",',
+        '  "reasoning": "..."',
+        "}",
+    ]
+    return "\n".join(lines)
+
+
+def _payload_qlogic_no_target(record: QuestionRecord) -> str:
+    """QLogic ablation: w/o target/perspective (Step 3 제거, target_character 필드 제거)."""
+    lines = [
+        f"Question type: {record.question_type}",
+        "",
+        f"Text context: {record.text_context or 'N/A'}",
+        "",
+        f"Question: {record.question}",
+        "",
+        f"A) {record.choices[0]}",
+        f"B) {record.choices[1]}",
+        f"C) {record.choices[2]}",
+        "",
+        "Solve the question by explicitly analyzing its logic.",
+        "",
+        "Step 1. Identify whether the question asks for MOST likely or LEAST likely.",
+        "",
+        "Step 2. Identify the explicit condition in the question.",
+        "Examples of conditions include:",
+        "- whether a character is trying to help another character",
+        "- whether a character is trying to hinder another character",
+        "- whether a character knows what is inside a location",
+        "- whether the answer should be inferred based on the agents' actions",
+        "",
+        "Step 3. Identify the key inference needed.",
+        "Useful inference rules:",
+        "- If a character knowingly gives false location information, this may indicate hindering rather than helping.",
+        "- If a character gives true and useful location information, this may indicate helping rather than hindering.",
+        "- If an agent placed an object somewhere and another agent moves it away, infer whether the mover believes the original location was the first agent's desired location.",
+        "- For belief-of-goal questions, distinguish the other agent's actual goal from what the target character believes about that goal.",
+        "- For LEAST likely questions, choose the option least consistent with the condition and inferred mental state.",
+        "- For MOST likely questions, choose the option most consistent with the condition and inferred mental state.",
+        "",
+        "Additional targeted checks:",
+        "- For belief questions with a LEAST likely polarity and a hindering condition, focus on the belief about the target object mentioned in the question, not on irrelevant objects. If the speaker gave a location for the target object and that location later appears false, then it is least likely that the speaker truly believed the target object was at the stated location.",
+        "- For social-goal questions involving information about a target object's location, do not assume that giving information means helping. First compare the stated location with the observed outcome. If the speaker is assumed to know the relevant location and the target object is not found at the stated location, treat the statement as potentially misleading. Then decide whether the social goal is helping, obstructing, or indifference.",
+        "",
+        "Step 4. Evaluate each option independently:",
+        "- A: Is this consistent with the question condition and the inferred mental state?",
+        "- B: Is this consistent with the question condition and the inferred mental state?",
+        "- C: Is this consistent with the question condition and the inferred mental state?",
+        "",
+        "Step 5. Choose the final answer according to the MOST/LEAST polarity.",
+        "",
+        "Respond in JSON:",
+        "{",
+        '  "question_polarity": "MOST likely or LEAST likely",',
+        '  "condition": "...",',
+        '  "key_inference": "...",',
+        '  "option_analysis": {',
+        '    "A": "...",',
+        '    "B": "...",',
+        '    "C": "..."',
+        "  },",
+        '  "choice_letter": "A",',
+        '  "reasoning": "..."',
+        "}",
+    ]
+    return "\n".join(lines)
+
+
+def _payload_qlogic_no_condition(record: QuestionRecord) -> str:
+    """QLogic ablation: w/o condition (Step 2 제거, condition 필드 제거)."""
+    lines = [
+        f"Question type: {record.question_type}",
+        "",
+        f"Text context: {record.text_context or 'N/A'}",
+        "",
+        f"Question: {record.question}",
+        "",
+        f"A) {record.choices[0]}",
+        f"B) {record.choices[1]}",
+        f"C) {record.choices[2]}",
+        "",
+        "Solve the question by explicitly analyzing its logic.",
+        "",
+        "Step 1. Identify whether the question asks for MOST likely or LEAST likely.",
+        "",
+        "Step 2. Identify the target character whose belief, belief about another character's goal, or social goal is being evaluated.",
+        "",
+        "Step 3. Identify the key inference needed.",
+        "Useful inference rules:",
+        "- If a character knowingly gives false location information, this may indicate hindering rather than helping.",
+        "- If a character gives true and useful location information, this may indicate helping rather than hindering.",
+        "- If an agent placed an object somewhere and another agent moves it away, infer whether the mover believes the original location was the first agent's desired location.",
+        "- For belief-of-goal questions, distinguish the other agent's actual goal from what the target character believes about that goal.",
+        "- For LEAST likely questions, choose the option least consistent with the inferred mental state.",
+        "- For MOST likely questions, choose the option most consistent with the inferred mental state.",
+        "",
+        "Additional targeted checks:",
+        "- For belief questions with a LEAST likely polarity, focus on the belief about the target object mentioned in the question, not on irrelevant objects.",
+        "- For social-goal questions involving information about a target object's location, do not assume that giving information means helping. Compare the stated location with the observed outcome to determine the social goal.",
+        "",
+        "Step 4. Evaluate each option independently:",
+        "- A: Is this consistent with the target character's mental state?",
+        "- B: Is this consistent with the target character's mental state?",
+        "- C: Is this consistent with the target character's mental state?",
+        "",
+        "Step 5. Choose the final answer according to the MOST/LEAST polarity.",
+        "",
+        "Respond in JSON:",
+        "{",
+        '  "question_polarity": "MOST likely or LEAST likely",',
+        '  "target_character": "...",',
+        '  "key_inference": "...",',
+        '  "option_analysis": {',
+        '    "A": "...",',
+        '    "B": "...",',
+        '    "C": "..."',
+        "  },",
+        '  "choice_letter": "A",',
+        '  "reasoning": "..."',
+        "}",
+    ]
+    return "\n".join(lines)
+
+
+def _payload_qlogic_no_candidate(record: QuestionRecord) -> str:
+    """QLogic ablation: w/o candidate comparison (Step 5 제거, option_analysis 필드 제거)."""
+    lines = [
+        f"Question type: {record.question_type}",
+        "",
+        f"Text context: {record.text_context or 'N/A'}",
+        "",
+        f"Question: {record.question}",
+        "",
+        f"A) {record.choices[0]}",
+        f"B) {record.choices[1]}",
+        f"C) {record.choices[2]}",
+        "",
+        "Solve the question by explicitly analyzing its logic.",
+        "",
+        "Step 1. Identify whether the question asks for MOST likely or LEAST likely.",
+        "",
+        "Step 2. Identify the explicit condition in the question.",
+        "Examples of conditions include:",
+        "- whether a character is trying to help another character",
+        "- whether a character is trying to hinder another character",
+        "- whether a character knows what is inside a location",
+        "- whether the answer should be inferred based on the agents' actions",
+        "",
+        "Step 3. Identify the target character whose belief, belief about another character's goal, or social goal is being evaluated.",
+        "",
+        "Step 4. Identify the key inference needed.",
+        "Useful inference rules:",
+        "- If a character knowingly gives false location information, this may indicate hindering rather than helping.",
+        "- If a character gives true and useful location information, this may indicate helping rather than hindering.",
+        "- If an agent placed an object somewhere and another agent moves it away, infer whether the mover believes the original location was the first agent's desired location.",
+        "- For belief-of-goal questions, distinguish the other agent's actual goal from what the target character believes about that goal.",
+        "- For LEAST likely questions, choose the option least consistent with the condition and inferred mental state.",
+        "- For MOST likely questions, choose the option most consistent with the condition and inferred mental state.",
+        "",
+        "Additional targeted checks:",
+        "- For belief questions with a LEAST likely polarity and a hindering condition, focus on the belief about the target object mentioned in the question, not on irrelevant objects. If the speaker gave a location for the target object and that location later appears false, then it is least likely that the speaker truly believed the target object was at the stated location.",
+        "- For social-goal questions involving information about a target object's location, do not assume that giving information means helping. First compare the stated location with the observed outcome. If the speaker is assumed to know the relevant location and the target object is not found at the stated location, treat the statement as potentially misleading. Then decide whether the social goal is helping, obstructing, or indifference.",
+        "",
+        "Step 5. Choose the final answer according to the MOST/LEAST polarity.",
+        "",
+        "Respond in JSON:",
+        "{",
+        '  "question_polarity": "MOST likely or LEAST likely",',
+        '  "condition": "...",',
+        '  "target_character": "...",',
+        '  "key_inference": "...",',
+        '  "choice_letter": "A",',
+        '  "reasoning": "..."',
+        "}",
+    ]
+    return "\n".join(lines)
+
+
 def _payload_choice_only_json(record: QuestionRecord) -> str:
     """Choice-only JSON: text_only와 동일하되 reasoning 제거"""
     lines = [
@@ -776,6 +971,74 @@ PROMPT_CONFIGS = {
         include_question_type=True,
         json_output=True,
         payload_fn=_payload_qlogic_v2_targeted,
+        response_parser_fn=_parse_question_logic_rerank_response,
+    ),
+    "generic_cot": PromptConfig(
+        name="generic_cot",
+        description="Generic CoT baseline: free-form step-by-step, no ToM-specific structure",
+        accuracy="TBD",
+        system_prompt=(
+            "You are an expert in theory of mind and social reasoning. "
+            "Answer the following multiple-choice question based on the text context. "
+            "Respond in JSON with keys: choice_letter (A/B/C) and reasoning."
+        ),
+        include_question_type=True,
+        json_output=True,
+        payload_fn=_payload_generic_cot,
+        response_parser_fn=_parse_question_logic_rerank_response,
+    ),
+    "qlogic_no_target": PromptConfig(
+        name="qlogic_no_target",
+        description="QLogic ablation: w/o target/perspective (Step 3 및 target_character 제거)",
+        accuracy="TBD",
+        system_prompt=(
+            "You are an expert in theory of mind and social reasoning. "
+            "Your task is to answer a multiple-choice Theory-of-Mind question by explicitly analyzing the question logic. "
+            "Do not answer immediately. "
+            "First identify the question polarity, the explicit condition, "
+            "and the key mental-state inference. "
+            "Then evaluate each option independently and choose the best answer. "
+            "Respond in JSON with keys: question_polarity, condition, key_inference, option_analysis, choice_letter, reasoning."
+        ),
+        include_question_type=True,
+        json_output=True,
+        payload_fn=_payload_qlogic_no_target,
+        response_parser_fn=_parse_question_logic_rerank_response,
+    ),
+    "qlogic_no_condition": PromptConfig(
+        name="qlogic_no_condition",
+        description="QLogic ablation: w/o condition (Step 2 및 condition 필드 제거)",
+        accuracy="TBD",
+        system_prompt=(
+            "You are an expert in theory of mind and social reasoning. "
+            "Your task is to answer a multiple-choice Theory-of-Mind question by explicitly analyzing the question logic. "
+            "Do not answer immediately. "
+            "First identify the question polarity, the target character, "
+            "and the key mental-state inference. "
+            "Then evaluate each option independently and choose the best answer. "
+            "Respond in JSON with keys: question_polarity, target_character, key_inference, option_analysis, choice_letter, reasoning."
+        ),
+        include_question_type=True,
+        json_output=True,
+        payload_fn=_payload_qlogic_no_condition,
+        response_parser_fn=_parse_question_logic_rerank_response,
+    ),
+    "qlogic_no_candidate": PromptConfig(
+        name="qlogic_no_candidate",
+        description="QLogic ablation: w/o candidate comparison (Step 5 및 option_analysis 제거)",
+        accuracy="TBD",
+        system_prompt=(
+            "You are an expert in theory of mind and social reasoning. "
+            "Your task is to answer a multiple-choice Theory-of-Mind question by explicitly analyzing the question logic. "
+            "Do not answer immediately. "
+            "First identify the question polarity, the explicit condition, the target character, "
+            "and the key mental-state inference. "
+            "Then choose the best answer directly. "
+            "Respond in JSON with keys: question_polarity, condition, target_character, key_inference, choice_letter, reasoning."
+        ),
+        include_question_type=True,
+        json_output=True,
+        payload_fn=_payload_qlogic_no_candidate,
         response_parser_fn=_parse_question_logic_rerank_response,
     ),
     "qlogic_v2_targeted_frames": PromptConfig(

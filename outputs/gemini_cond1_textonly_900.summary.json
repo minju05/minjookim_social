@@ -1,0 +1,7 @@
+{
+  "num_questions": 56,
+  "overall_accuracy": 0.7678571428571429,
+  "accuracy_by_type": {
+    "belief_of_goal": 0.7678571428571429
+  }
+}

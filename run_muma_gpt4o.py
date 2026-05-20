@@ -58,6 +58,12 @@ def build_arg_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="기존 output 파일에 이어서 쓰기 (덮어쓰기 대신 append).",
     )
+    parser.add_argument(
+        "--question-ids",
+        type=str,
+        default=None,
+        help="콤마 구분 question_id 리스트. 지정 시 --limit/--offset 무시.",
+    )
     return parser
 
 
@@ -96,7 +102,12 @@ def main() -> None:
         allowed = {t.strip() for t in args.question_types.split(",")}
         questions = [q for q in questions if q.question_type in allowed]
 
-    selected = questions[args.offset : args.offset + args.limit]
+    # --question-ids 필터 적용 (지정 시 limit/offset 무시)
+    if args.question_ids:
+        id_set = {qid.strip() for qid in args.question_ids.split(",")}
+        selected = [q for q in questions if q.question_id in id_set]
+    else:
+        selected = questions[args.offset : args.offset + args.limit]
     client = OpenAI(api_key=settings.openai_api_key)
     frame_stride = args.frame_stride or settings.frame_stride
     max_frames = settings.max_frames if args.max_frames is None else (None if args.max_frames == 0 else args.max_frames)
