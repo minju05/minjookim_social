@@ -1,0 +1,125 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+We suggest you to set `dtype=torch.float16` for better efficiency on CUDA/XPU with AWQ.
+/home/mindrium-admin3/.venv/lib/python3.10/site-packages/awq/__init__.py:21: DeprecationWarning: 
+I have left this message as the final dev message to help you transition.
+
+Important Notice:
+- AutoAWQ is officially deprecated and will no longer be maintained.
+- The last tested configuration used Torch 2.6.0 and Transformers 4.51.3.
+- If future versions of Transformers break AutoAWQ compatibility, please report the issue to the Transformers project.
+
+Alternative:
+- AutoAWQ has been adopted by the vLLM Project: https://github.com/vllm-project/llm-compressor
+
+For further inquiries, feel free to reach out:
+- X: https://x.com/casper_hansen_
+- LinkedIn: https://www.linkedin.com/in/casper-hansen-804005170/
+
+  warnings.warn(_FINAL_DEV_MESSAGE, category=DeprecationWarning, stacklevel=1)
+[qwen] Loading model from Qwen/Qwen2.5-VL-32B-Instruct-AWQ ...
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:06,  1.31s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:02<00:05,  1.28s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:03<00:03,  1.28s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:05<00:02,  1.25s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:05<00:01,  1.13s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:06<00:00,  1.20it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:06<00:00,  1.04s/it]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+[qwen] Model loaded.
+MuMA-ToM Qwen:   0%|          | 0/2 [00:00<?, ?it/s]MuMA-ToM Qwen:   0%|          | 0/2 [00:01<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/triton/language/core.py", line 42, in wrapper
+    return fn(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/triton/language/core.py", line 2045, in dot
+    return _semantic.dot(input, other, acc, input_precision, max_num_imprecise_acc, out_dtype)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/triton/language/semantic.py", line 1479, in dot
+    assert lhs.dtype == rhs.dtype, f"Both operands must be same dtype. Got {lhs.dtype} and {rhs.dtype}"
+AssertionError: Both operands must be same dtype. Got fp16 and bf16
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mindrium-admin3/minjookim_social/run_muma_qwen.py", line 239, in <module>
+    main()
+  File "/home/mindrium-admin3/minjookim_social/run_muma_qwen.py", line 204, in main
+    output_ids = model.generate(
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/transformers/generation/utils.py", line 2566, in generate
+    result = decoding_method(
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/transformers/generation/utils.py", line 2786, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/accelerate/hooks.py", line 192, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/transformers/models/qwen2_5_vl/modeling_qwen2_5_vl.py", line 1476, in forward
+    outputs = self.model(
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/transformers/models/qwen2_5_vl/modeling_qwen2_5_vl.py", line 1305, in forward
+    outputs = self.language_model(
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/transformers/models/qwen2_5_vl/modeling_qwen2_5_vl.py", line 891, in forward
+    layer_outputs = decoder_layer(
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+    return super().__call__(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/accelerate/hooks.py", line 192, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/transformers/models/qwen2_5_vl/modeling_qwen2_5_vl.py", line 741, in forward
+    hidden_states, self_attn_weights = self.self_attn(
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/accelerate/hooks.py", line 192, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/transformers/models/qwen2_5_vl/modeling_qwen2_5_vl.py", line 645, in forward
+    query_states = self.q_proj(hidden_states)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/accelerate/hooks.py", line 192, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/awq/modules/linear/gemm.py", line 273, in forward
+    out = WQLinearMMFunction.apply(
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/torch/autograd/function.py", line 576, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/awq/modules/linear/gemm.py", line 67, in forward
+    out = awq_gemm_triton(
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/awq/modules/triton/gemm.py", line 343, in awq_gemm_triton
+    awq_gemm_kernel[grid](
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/triton/runtime/jit.py", line 390, in <lambda>
+    return lambda *args, **kwargs: self.run(grid=grid, warmup=False, *args, **kwargs)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/triton/runtime/jit.py", line 594, in run
+    kernel = self.compile(src, target=target, options=options.__dict__)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/triton/compiler/compiler.py", line 339, in compile
+    module = src.make_ir(options, codegen_fns, module_map, context)
+  File "/home/mindrium-admin3/.venv/lib/python3.10/site-packages/triton/compiler/compiler.py", line 83, in make_ir
+    return ast_to_ttir(self.fn, self, context=context, options=options, codegen_fns=codegen_fns,
+triton.compiler.errors.CompilationError: at 108:22:
+        masks_s = masks_sk[:, None] & masks_sn[None, :]
+        scales_ptrs = scales_ptr + offsets_s
+        scales = tl.load(scales_ptrs, mask=masks_s)
+        scales = tl.broadcast_to(scales, (BLOCK_SIZE_K, BLOCK_SIZE_N))
+
+        b = (b >> shifts) & 0xF
+        zeros = (zeros >> shifts) & 0xF
+        b = (b - zeros) * scales
+        b = b.to(c_ptr.type.element_ty)
+
+        # Accumulate results.
+        accumulator = tl.dot(a, b, accumulator, out_dtype=accumulator_dtype)
+                      ^

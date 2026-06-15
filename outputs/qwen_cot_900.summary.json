@@ -1,0 +1,9 @@
+{
+  "num_questions": 900,
+  "overall_accuracy": 0.3688888888888889,
+  "accuracy_by_type": {
+    "belief": 0.5033333333333333,
+    "belief_of_goal": 0.18333333333333332,
+    "social_goal": 0.42
+  }
+}
